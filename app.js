@@ -70,7 +70,7 @@ app.use("/admin", adminRouter);
 mongoose
   .connect(MONGO_URI)
   .then((result) => {
-    const server = app.listen(5000);
+    const server = app.listen(5000,'0.0.0.0');
     const io = require("./socket").init(server);
     io.on("connection", (socket) => {
       console.log(`${socket.id} connected`);
