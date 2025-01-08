@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Your Order 
+  
+  style.
+      th, td {
+      border: 1px solid black;
+      }
+      th{
+        font-size: 0.85rem;
+      }
+      tr {
+        text-align: center;
+      }
+      p {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+     
+
+  body
+    h1 Xin chào #{fullname}
+    p Phone: #{phone}
+    p Address: #{address}
+    .table-responsive.mb-4
+      table.table
+        thead.bg-light
+          tr.text-center
+            th(scope="col")
+              strong Tên sản phẩm
+            th(scope="col")
+              strong Hình ảnh
+            th(scope="col")
+              strong Giá
+            th(scope="col")
+              strong Số lượng
+            th(scope="col")
+              strong Thành tiền
+            
+        tbody
+          each value, index in products
+            tr.text-center(key=index)
+              td
+                div #{value.product.name}
+              td
+                div 
+                  img(src=value.product.img, alt=value.product.name, width="70")
+              td
+                p #{convertMoney(value.product.price)} 
+                p VND
+              td
+                p #{value.quantity}
+              td
+                p #{convertMoney(parseInt(value.product.price) * parseInt(value.quantity))}
+                p VND
+    h3 Tổng thanh toán: #{convertMoney(sub_total)} VND 
+    h3 Thời gian đặt đơn: #{createdAt}
+   
+  
+  p Cảm ơn bạn!
